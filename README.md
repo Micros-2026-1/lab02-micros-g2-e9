@@ -195,6 +195,12 @@ void main(void) {
 
 ## 2.4 Diagramas
 
+![pic](/proteus.jpg)
+### 1. Diagrama simulación ```PROTEUS```
+
+![pic](/pinesref.jpg)
+### 2. Diagrama pines de referencia Pickit y Microcontrolador ```PIC18F45K22``` 
+
 ## 2.5 Formas de onda
 
 ### INTOSC (interno) 
