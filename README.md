@@ -20,9 +20,130 @@
 
 #### 1.3 [Procedimiento y montajes realizados]
 
+## 1.1 Resumen
+
+En esta práctica hemos realizado el analisis, modelación, relacionamiento y montaje de  dos circuitos operados por un **PIC18F45K22**  que les brindará una salida digital mediante un código de programación hecho en lenguaje **C** por medio de un compilador llamado **MPLAB X IDE**.  Así, con esto, empezar a comprender un poco más el funcionamiento de los microprocesadores en un entorno relacionado a osciladores, condensadores y medidas de señales.
+
+## * Marco Teorico
+
+**PIC18F45K22:** Es un microcontrolador de alto desempeño, con arquitectura optimizada basado en lenguaje ```C compiler``` en encapsulado tipo ```DIP``` de 18 pines, este es un componente de bajo consumo con memoria SRAM de 1536 bytes.
+
+**Lenguaje C:** Es un lenguaje de programación de propósito general​ originalmente desarrollado por Dennis Ritchie entre 1969 y 1972. Es muy eficiente y ofrece la posibilidad de manejar todos los aspectos de las instrucciones del ```CPU```. Su código ofrece una estructura clara y, por tanto, facilita la creación de aplicaciones de una forma rápida y potente.
+
+**MPLAB X IDE:** Funciona como una interfaz unificada para herramientas de desarrollo de software y hardware adicionales de ```Microchip``` y de terceros. Es un  entorno de desarrollo integrado (IDE) gratuito y multiplataforma de Microchip para programar microcontroladores PIC® y AVR®, basado en NetBeans. 
+
+## 1.2 Herramientas y materiales
+
+* Microcontrolador ```PIC18F45K22``` 
+
+* LEDS.
+
+* Resistencias Ω.
+
+* Programador (PICkit $3$, PICkit $4$).
+
+* Fuente de alimentación de $5$ V → El PICkit $3$ o $4$ para suministrar tensión directamente al circuito (típicamente $5$ V o $3.3$ V, según se configure en MPLAB X)
+
+* Entorno de programación MPLAB X IDE con compilador XC8.
+
+* Condensadores electrolíticos
+  
+* Oscilador de Cuarzo 
+  
+* Computador con un SO relacionable
+
+* Protoboard y cables de conexión.
+
 ### 2.1 Descripción del laboratorio
 
 ### 2.2 Explicación del código implementado
+
+```
+
+#include <xc.h>
+#include <stdint.h>
+
+// ========================== CONFIGURACIÓN GENERAL ========================
+// Configuraciones que no dependen del modo de oscilador
+#pragma config WDTEN = OFF      
+#pragma config LVP = OFF        
+#pragma config PBADEN = OFF     
+#pragma config CP0 = OFF, CP1 = OFF, CP2 = OFF, CP3 = OFF  
+#pragma config BOREN = OFF      
+#pragma config FCMEN = OFF      
+#pragma config IESO = OFF       
+
+// ========================== MODO DE OSCILADOR ==========================
+// 1 = INTOSC interno
+// 2 = Cristal externo HS
+// 3 = RC externo
+#define MODE 1  
+
+#if MODE == 1
+    #pragma config FOSC = INTIO67   // Oscilador interno
+    #define USE_PLL 0
+#elif MODE == 2
+    #pragma config FOSC = HSHP     // Cristal HS
+    #define USE_PLL 0
+#elif MODE == 3
+    #pragma config FOSC = RC       // RC externo
+    #define USE_PLL 0
+#else
+    #error "Modo de oscilador inválido"
+#endif
+
+
+// ========================== FRECUENCIA DEL OSCILADOR =====================
+#if MODE == 1 || MODE == 2
+    #if USE_PLL
+        #define _XTAL_FREQ 64000000UL // 16 MHz * 4
+    #else
+        #define _XTAL_FREQ 16000000UL
+    #endif
+#else
+    #define _XTAL_FREQ 16000000UL // Ajustar según resistencia + condensador
+#endif
+
+// ========================== FUNCIONES ==========================
+void delay_ms(uint16_t ms) {
+    while(ms--) {
+        __delay_ms(1);
+    }
+}
+
+void init_pins(void) {
+    // RC0 salida blinker
+    TRISCbits.TRISC0 = 0;
+    LATCbits.LATC0 = 0;
+
+    // RA6 salida CLKO solo si modo lo permite
+    if(MODE == 1 || (MODE == 2 && USE_PLL)) {
+        TRISAbits.TRISA6 = 0;
+        LATAbits.LATA6 = 0;
+    }
+}
+
+void init_oscillator(void) {
+#if USE_PLL
+    OSCCONbits.SPLLEN = 1;  // habilita PLL
+#endif
+}
+
+// ========================== PROGRAMA PRINCIPAL ==========================
+void main(void) {
+    init_pins();
+    init_oscillator();
+
+    while(1) {
+        // RC0 toggle ≈ 500 Hz
+        LATCbits.LATC0 = 1;
+        delay_ms(1);
+        LATCbits.LATC0 = 0;
+        delay_ms(1);
+    }
+}
+
+```
 
 ### 2.3 Análisis y comparación
 
