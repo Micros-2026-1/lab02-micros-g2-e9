@@ -5,7 +5,20 @@
 
 ## 1. Integrantes
 
+* [Johan Sebastian Leon Villabon](https://github.com/johanleon96)
+* [Juan David Riaño Gutierrez](https://github.com/DONTFISRT)
+* [Jairo Alberto Hernandez Avila](https://github.com/jairoaha)
+
 ## 2. Documentación
+
+# Laboratorio 1 - Microprocesadores / Caracterización de osciladores con microcontrolador PIC 
+
+## Indice
+#### 1.1 [Resumen y Marco Teorico]
+
+#### 1.2 [Herramientas y materiales usados]
+
+#### 1.3 [Procedimiento y montajes realizados]
 
 ### 2.1 Descripción del laboratorio
 
@@ -17,9 +30,9 @@
 
 | Modo de oscilador | Freq. teórica Fosc | RA6 medible (CLKO)? | Freq. medida RA6 (Hz) | Freq. teórica RC0 (Hz)| Freq. medida RC0 (Hz) | Error RC0 (%) |  
 |------------------|------------------|---------------------|---------------|---------------------|---------------|---------------|
-| INTOSC (interno) | 16,000,000       | Sí                 |                     |                500                 |               |               | |
+| INTOSC (interno) | 16,000,000       | Sí                 | 31.4               |             500                 |    31         |               | |
 | HS (cristal externo 16 MHz) | 16,000,000 | No |     NA      |               500                 |               |               |
-| RC externo       | ~16,000,000*     | No                                    |       N/A        | 500                 |               |               | |
+| RC externo       | ~16,000,000*     | No                                    |       N/A        | 500                 | 496.1           |               | |
 
 #### Tabla 2: Medición con calor
 
