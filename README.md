@@ -11,7 +11,7 @@
 
 ## 2. Documentación
 
-# Laboratorio 1 - Microprocesadores / Caracterización de osciladores con microcontrolador PIC 
+# Laboratorio 2 - Microprocesadores / Caracterización de osciladores con microcontrolador PIC 
 
 ## Indice
 #### 1.1 [Resumen y Marco Teorico]
