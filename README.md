@@ -202,7 +202,7 @@ void main(void) {
 ### 2. Diagrama pines de referencia Pickit y Microcontrolador ```PIC18F45K22``` 
 
 ## 2.5 Formas de onda
-
+![pic](/Simulacion.png)
 ### INTOSC (interno) 
 
 
