@@ -32,23 +32,29 @@ En esta práctica hemos realizado el analisis, modelación, relacionamiento y mo
 
 **MPLAB X IDE:** Funciona como una interfaz unificada para herramientas de desarrollo de software y hardware adicionales de ```Microchip``` y de terceros. Es un  entorno de desarrollo integrado (IDE) gratuito y multiplataforma de Microchip para programar microcontroladores PIC® y AVR®, basado en NetBeans. 
 
+**Oscilador:** Los osciladores son componentes esenciales que producen una señal electrónica periódica, típicamente una onda senoidal o cuadrada. Los osciladores convierten la señal de CC en señales de CA periódicas que pueden ser utilizadas para establecer la frecuencia, ser usadas en aplicaciones de audio, o utilizadas como una señal de reloj. Todos los microcontroladores y microprocesadores requieren de un oscilador para establecer la señal de reloj para poder funcionar.
+
+**Osciloscopio:** Es un instrumento que muestra gráficamente señales eléctricas y cómo estas cambian con el tiempo. Mide estas señales conectándose a un sensor, un dispositivo que genera una señal eléctrica en respuesta a estímulos físicos como el sonido, la luz y el calor. 
+
 ## 1.2 Herramientas y materiales
 
 * Microcontrolador ```PIC18F45K22``` 
 
 * LEDS.
 
-* Resistencias Ω.
+* Resistencias 330Ω y 1kΩ.
 
 * Programador (PICkit $3$, PICkit $4$).
 
 * Fuente de alimentación de $5$ V → El PICkit $3$ o $4$ para suministrar tensión directamente al circuito (típicamente $5$ V o $3.3$ V, según se configure en MPLAB X)
 
-* Entorno de programación MPLAB X IDE con compilador XC8.
+* Entorno de programación ```MPLAB X IDE``` con compilador ```XC8```.
 
-* Condensadores electrolíticos
+* Condensadores electrolíticos de 21pF y 15pF.
   
-* Oscilador de Cuarzo 
+* Oscilador de Cuarzo de 16 MHz
+  
+* Osciloscopio
   
 * Computador con un SO relacionable
 
@@ -56,11 +62,19 @@ En esta práctica hemos realizado el analisis, modelación, relacionamiento y mo
 
 ### 2.1 Descripción del laboratorio
 
+Realiazamos la operación de configurar y programar el  **PIC18F45K22**  para operar con condensadores, con su oscilador interno y externo basado en un cristal de cuarzo. Con el **oscilador interno ```(INTOSC)```** y con el **oscilador externo (cristal)** se va a verificar la frecuencia real del integrado y el circuito generado en una señal de referencia del pin de salida y medir dicha señal con un osciloscopio para verificar su estado de trabajo, señal y frecuencia relacionada. 
+
+Acto seguido, se compara los modos de operación entre ```(Cuarzo cristal vs INTOSC vs RC)``` en cuanto a:
+
+- Precisión de frecuencia, estabilidad de la señal, efectos de cambio de medida de acuerdo a sus manipulaciones y afectaciones térmicas de acuerdo a su medida de frecuencia.
+
 ### 2.2 Explicación del código implementado
 
 ```
+// El xc.h permite usar los registros del microcontrolador.
+// stdint.h permite usar tipos de datos como uint16_t.
 
-#include <xc.h>
+#include <xc.h>    
 #include <stdint.h>
 
 // ========================== CONFIGURACIÓN GENERAL ========================
@@ -77,8 +91,9 @@ En esta práctica hemos realizado el analisis, modelación, relacionamiento y mo
 // 1 = INTOSC interno
 // 2 = Cristal externo HS
 // 3 = RC externo
-#define MODE 1  
 
+#define MODE 1
+// Define para el microcontrolador el pscilador que el usario dese usar  ======
 #if MODE == 1
     #pragma config FOSC = INTIO67   // Oscilador interno
     #define USE_PLL 0
@@ -94,9 +109,10 @@ En esta práctica hemos realizado el analisis, modelación, relacionamiento y mo
 
 
 // ========================== FRECUENCIA DEL OSCILADOR =====================
+// Indica que el microcontrolador trabaja a tal frecuencia 
 #if MODE == 1 || MODE == 2
     #if USE_PLL
-        #define _XTAL_FREQ 64000000UL // 16 MHz * 4
+        #define _XTAL_FREQ 64000000UL
     #else
         #define _XTAL_FREQ 16000000UL
     #endif
@@ -105,6 +121,7 @@ En esta práctica hemos realizado el analisis, modelación, relacionamiento y mo
 #endif
 
 // ========================== FUNCIONES ==========================
+// Este comienza comienza la ejecución del programa.
 void delay_ms(uint16_t ms) {
     while(ms--) {
         __delay_ms(1);
