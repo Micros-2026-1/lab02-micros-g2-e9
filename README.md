@@ -176,7 +176,7 @@ void main(void) {
 
 | Modo de oscilador | Freq. teórica Fosc | RA6 medible (CLKO)? | Freq. medida RA6 (Hz) | Freq. teórica RC0 (Hz)| Freq. medida RC0 (Hz) | Error RC0 (%) |  
 |------------------|------------------|---------------------|---------------|---------------------|---------------|---------------|
-| INTOSC (interno) | 16,000,000       | Sí    |             |  500           |     30.67            |               | |
+| INTOSC (interno) | 16,000,000       | Sí    |  NO HAY SEÑAL      |  500           |     30.67            |               | |
 | HS (cristal externo 16 MHz) | 16,000,000 | No |     NA      |    500       |          501.63     |               |
 | RC externo       | ~16,000,000*     | No          |       N/A        | 500             |  419.7             |               | |
 
