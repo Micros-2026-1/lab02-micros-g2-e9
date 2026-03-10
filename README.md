@@ -204,14 +204,13 @@ void main(void) {
 ## 2.5 Formas de onda
 ![pic](/Simulacion.png)
 ### INTOSC (interno) 
-
-
+![pic](/ondaintcalor.png)
 ### HS
-
+![pic](/ondacalorcristal.png)
 ## RC
-
+![pic](/ondacalorRC0.png)
 ## 3. Evidencias de implementación
-
+![pic](/montajeosc.jpeg)
 ## 4. Preguntas
 
 * ¿En qué modo se obtuvo la medición más cercana a la frecuencia teórica?
