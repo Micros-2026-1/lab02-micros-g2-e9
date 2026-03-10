@@ -18,13 +18,19 @@
 
 #### 1.2 [Herramientas y materiales usados]
 
-#### 2.1 Descripción del laboratorio
+#### 2.1 [Descripción del laboratorio]
 
-#### 2.2 Explicación del código implementado
+#### 2.2 [Explicación del código implementado]
 
-#### 2.3 Análisis y comparación
+#### 2.3 [Análisis y comparación]
 
-#### 3 [Evidencias de implementación]
+#### 2.4 [Diagramas]
+
+#### 2.5 [Formas de onda]
+
+#### 3. [Evidencias de implementación]
+
+#### 4. [Preguntas]
 
 ## 1.1 Resumen
 
