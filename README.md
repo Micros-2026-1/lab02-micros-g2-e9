@@ -18,7 +18,13 @@
 
 #### 1.2 [Herramientas y materiales usados]
 
-#### 1.3 [Procedimiento y montajes realizados]
+#### 2.1 Descripción del laboratorio
+
+#### 2.2 Explicación del código implementado
+
+#### 2.3 Análisis y comparación
+
+#### 3 [Evidencias de implementación]
 
 ## 1.1 Resumen
 
