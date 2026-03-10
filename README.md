@@ -226,16 +226,34 @@ void main(void) {
 ## 4. Preguntas
 
 * ¿En qué modo se obtuvo la medición más cercana a la frecuencia teórica?
+  El modo que se acerco mas a la frecuencia calculada de 500 Hz fue el modo 3, sin tener en cuenta el aumento de temperatura del capacitor, obtuvimos una frecuencia de onda cuadrada de 501.6 Hz, usando un capacitor de 22 nF y una resistencia de 19 Kohms.
 
 * ¿Fue posible evidenciar el fenómeno de deriva? ¿Qué factores podrían explicar la variación de frecuencia al calentar el PIC?
+  Fue posible observar el fenómeno de deriva de manera clara en usando el oscilador con el circuito del cristal de cuarzo, como tal no se tomaron temperaturas exactas sin embargo al calentar el cristal progresivamente la frecuencia de la onda cuadrada fue aumentado, inicialmente en frio, teníamos 496.1 Hz, al calentarlo fue aumentando la frecuencia hasta que después de, alrededor de 502 Hz el cristal dejo de oscilar, deteniendo asi la señal cuadrada
 
 * ¿Cuál es más preciso en cuanto a frecuencia teórica vs. medida?
-
+En nuestro caso particular logramos obtener una lectura mas precisa usando el oscilador RC debido a la confirmación del mismo, sin embargo el cristal de cuarzo es la opción favorita en cuanto a precisión y fiabilidad.
 
 * Explique cómo usar RC0 para estimar la frecuencia del oscilador cuando RA6 no está disponible.
+Para estimar la frecuencia del oscilador con el pin RCO, podemos poner un LED a su salida; si el LED parpadea más lento o más rápido de lo programado, significa que el oscilador real no coincide con el código. Se usa el LED como un cronómetro visual: si tarda el doble en encender, tu frecuencia real es la mitad de la esperada.
 
 * Si se quisiera duplicar la frecuencia del PIC usando PLL, ¿en qué modos se podría aplicar?
+  En este caso, el código no contiene configuración para el PLL, por lo cual no sería posible usar el multiplicador de frecuencia, sin embargo, en caso de definirla, se podría usar en el modo 1 o 2.
 
 * Enliste ventajas y desventajas de cada modo.
+Modo 1: Interno (INTOSC)
+Ventajas: No requiere componentes externos (ahorra espacio y dinero) y libera los pines RA6/RA7 para usarlos como entradas o salidas digitales.
+
+Desventajas: Es menos preciso que un cristal; la frecuencia puede variar ligeramente con cambios de temperatura o voltaje.
+
+Modo 2: Cristal Externo (HS)
+Ventajas: Máxima precisión y estabilidad térmica, esencial para comunicaciones de datos (USB/Serial) o relojes de tiempo real.
+
+Desventajas: Requiere componentes extra (cristal y dos capacitores) y ocupa dos pines del microcontrolador (OSC1 y OSC2).
+
+Modo 3: RC Externo
+Ventajas: Es el método más económico y sencillo si solo necesitas que el chip funcione sin importar la precisión del tiempo.
+
+Desventajas: Es el más inestable; la velocidad cambia mucho según la calidad de la resistencia y el capacitor, o si el ambiente se calienta.
 
 ## 5. Referencias
