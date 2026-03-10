@@ -168,25 +168,25 @@ void main(void) {
 
 | Modo de oscilador | Freq. teórica Fosc | RA6 medible (CLKO)? | Freq. medida RA6 (Hz) | Freq. teórica RC0 (Hz)| Freq. medida RC0 (Hz) | Error RC0 (%) |  
 |------------------|------------------|---------------------|---------------|---------------------|---------------|---------------|
-| INTOSC (interno) | 16,000,000       | Sí                 | 31.4               |             500                 |    31         |               | |
-| HS (cristal externo 16 MHz) | 16,000,000 | No |     NA      |   500                 | 496.1             |               |
-| RC externo       | ~16,000,000*     | No      |       N/A        | 500                 |    501.6      |               | |
+| INTOSC (interno) | 16,000,000       | Sí                 | 31.4             |   500     |    31         |    93 %| |
+| HS (cristal externo 16 MHz) | 16,000,000 | No |     NA      |   500                 | 496.1             |   0.8 %            |
+| RC externo       | ~16,000,000*     | No      |       N/A        | 500                 |    501.6      |    0.32 %         | |
 
 #### Tabla 2: Medición con calor
 
 | Modo de oscilador | Freq. teórica Fosc | RA6 medible (CLKO)? | Freq. medida RA6 (Hz) | Freq. teórica RC0 (Hz)| Freq. medida RC0 (Hz) | Error RC0 (%) |  
 |------------------|------------------|---------------------|---------------|---------------------|---------------|---------------|
-| INTOSC (interno) | 16,000,000       | Sí    |  NO HAY SEÑAL      |  500           |     30.67            |               | |
-| HS (cristal externo 16 MHz) | 16,000,000 | No |     NA      |    500       |          501.63     |               |
-| RC externo       | ~16,000,000*     | No          |       N/A        | 500             |  419.7             |               | |
+| INTOSC (interno) | 16,000,000       | Sí    |  NO HAY SEÑAL      |  500           |     30.67     |    93.86 %       | |
+| HS (cristal externo 16 MHz) | 16,000,000 | No |     NA      |    500       |          501.63     |      0.326 %         |
+| RC externo       | ~16,000,000*     | No          |       N/A        | 500             |  419.7    |      16.06 %         | |
 
 #### Tabla 3: Deriva
 
 | Modo de oscilador |RC0 deriva (Hz) |
 |------------------|--------------------|
-| INTOSC (interno) |                    |                
-| HS (cristal externo 16 MHz) |                |                |
-| RC externo       |                 |                
+| INTOSC (interno) |      468.6           |                
+| HS (cristal externo 16 MHz) |    3.9     |                |
+| RC externo       |         1.6        |                
 
 
 <!-- Agregar tablas para valores usando PLL -->
